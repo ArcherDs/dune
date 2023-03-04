@@ -86,6 +86,9 @@ module Partial : sig
   val to_dyn : t -> Dyn.t
 end
 
+(** A standard list of watch exclusions *)
+val standard_watch_exclusions : string list
+
 val decode : Partial.t Dune_lang.Decoder.t
 
 (** Decode the same fields as the one accepted in the configuration file, but
@@ -121,6 +124,7 @@ val equal : t -> t -> bool
 
 val for_scheduler :
      t
+  -> ?watch_exclusions:string list
   -> Dune_stats.t option
   -> insignificant_changes:[ `React | `Ignore ]
   -> signal_watcher:[ `Yes | `No ]
