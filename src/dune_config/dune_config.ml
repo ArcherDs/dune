@@ -458,8 +458,8 @@ let auto_concurrency =
       in
       loop commands)
 
-let for_scheduler (t : t) ?watch_exclusions stats ~insignificant_changes
-    ~signal_watcher =
+let for_scheduler (t : t) ?(watch_exclusions = standard_watch_exclusions) stats
+    ~insignificant_changes ~signal_watcher =
   let concurrency =
     match t.concurrency with
     | Fixed i -> i
@@ -476,6 +476,5 @@ let for_scheduler (t : t) ?watch_exclusions stats ~insignificant_changes
   ; stats
   ; insignificant_changes
   ; signal_watcher
-  ; watch_exclusions =
-      Option.value watch_exclusions ~default:standard_watch_exclusions
+  ; watch_exclusions
   }

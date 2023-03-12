@@ -122,6 +122,12 @@ val hash : t -> int
 
 val equal : t -> t -> bool
 
+(** [for_scheduler config ?watch_exclusions stats_opt ~insignificant_changes
+    ~signal_watcher]
+    creates a configuration for a scheduler from the user-visible Dune [config].
+
+    [watch_exclusions] defaults to {!standard_watch_exclusions} if not
+    specified. *)
 val for_scheduler :
      t
   -> ?watch_exclusions:string list
